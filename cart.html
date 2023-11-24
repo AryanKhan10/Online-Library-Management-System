@@ -14,15 +14,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Salsa&family=Wellfleet&display=swap" rel="stylesheet">
     <style>
-      /* Add space around the navbar brand */
-      /* .navbar-brand {
-            margin-right: 15px;
-            margin-left: 15px;
-        } */
-    </style>
-
-    <style>
-      /* General styles */
       body {
         font-family: 'IBM Plex Mono', monospace;
 font-family: 'Salsa', cursive;
@@ -53,14 +44,6 @@ font-family: 'Wellfleet', monospace;
           font-size: 1.5rem;
         }
 
-        /* .navbar-brand span {
-      font-weight: bold;
-      color: #ecf0f1;
-     } */
-
-        /* .navbar-toggler {
-      border: 1px solid #ecf0f1;
-     } */
 
         .navbar-nav {
           margin-left: auto;
@@ -76,7 +59,7 @@ font-family: 'Wellfleet', monospace;
         border: none;
       }
 
-      /* Adjust styling based on your design preferences */
+     
       /* Responsive styles */
       @media (max-width: 768px) {
         .navbar-collapse {
@@ -86,28 +69,28 @@ font-family: 'Wellfleet', monospace;
 
         .navbar-nav {
           margin-top: 10px;
-          /* Adjust top margin for better spacing */
+          
         }
 
         .navbar-nav .nav-item {
           text-align: center;
-          /* Center align items in the collapsed menu */
+     
         }
 
         .navbar-nav .nav-link {
           padding: 10px;
-          /* Adjust padding for better touch experience */
+   
           color: #ecf0f1 !important;
-          /* Text color for the collapsed menu items */
+    
         }
 
         .navbar-toggler-icon {
           background-color: #ecf0f1;
-          /* Background color for the toggler icon */
+     
         }
       }
 
-      /* Dropdown styling */
+
       .dropdown-menu {
         background-color: #343a40;
       }
@@ -162,11 +145,9 @@ font-family: 'Wellfleet', monospace;
       }
 
       .footer {
-                /* background-color: #4CAF50; */
+             
                 color: #fff;
                 text-align: center;
-                /* padding: 20px; */
-                /* border-radius: 10px; */
                 margin-top: 30px;
                 background-color: #343a40;
                 padding: 40px 0;
@@ -196,9 +177,7 @@ font-family: 'Wellfleet', monospace;
         font-weight: bold;
       }
 
-      /* .card-text {
-      margin-bottom: 5px;
-    } */
+
 
       input[type="number"] {
         width: 70px;
@@ -278,22 +257,22 @@ font-family: 'Wellfleet', monospace;
     <div class="container my-5">
       <h2>Shopping Cart</h2>
       <div id="cart-content">
-        <!-- Cart items will be displayed here using JavaScript -->
+     
       </div>
     </div>
     <div class="welcome-section">
       <h1 class="welcome-text">Your Total Amount</h1>
 
-      <!-- Total amount section -->
+    
       <div class="row">
         <div class="col-md-12">
           <div id="total-amount">
-            <!-- Total amount will be displayed here using JavaScript -->
+           
           </div>
         </div>
       </div>
 
-      <!-- Proceed to Payment button -->
+   
       <div class="row">
         <div class="col-md-12">
           <button id="proceed-to-payment" class="btn btn-warning my-2">
@@ -314,17 +293,17 @@ font-family: 'Wellfleet', monospace;
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script>
-      // Function to fetch and display cart items
+      
       function displayCartItems() {
         const cartContent = document.getElementById("cart-content");
         cartContent.innerHTML = "";
 
-        // Retrieve cart items from local storage
+      
         const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // Iterate through the cart items
         cartItems.forEach((cartItem) => {
           const cartItemCard = document.createElement("div");
           cartItemCard.classList.add("card", "mb-2");
@@ -348,58 +327,51 @@ font-family: 'Wellfleet', monospace;
         updateTotalAmount(cartItems);
       }
 
-      // Function to handle buying an item and updating total amount
       function buyItem(title, price) {
-        // Retrieve cart items from local storage
+       
         const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // Find the cart item by title
+
         const cartItem = cartItems.find((item) => item.title === title);
 
         if (cartItem) {
-          // Increase the quantity by 1 and update the total amount
+     
           cartItem.quantity += 1;
 
-          // Update the cart items in local storage
+    
           localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
           displayCartItems();
         }
       }
 
-      // Function to update the quantity of a cart item
+ 
       function updateQuantity(title, newQuantity) {
-        // Retrieve cart items from local storage
+      
         const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // Find the cart item by title
+ 
         const cartItem = cartItems.find((item) => item.title === title);
 
         if (cartItem) {
           cartItem.quantity = parseInt(newQuantity, 10);
         }
 
-        // Update the cart items in local storage
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
         displayCartItems();
       }
 
-      // Function to remove an item from the cart
       function removeItem(title) {
-        // Retrieve cart items from local storage
         let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // Filter out the item to be removed
         cartItems = cartItems.filter((item) => item.title !== title);
 
-        // Update the cart items in local storage
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
         displayCartItems();
       }
 
-      // Function to calculate and display the total amount
       function updateTotalAmount(cartItems) {
         const totalAmount = document.getElementById("total-amount");
         const totalPrice = cartItems.reduce((total, item) => {
@@ -410,21 +382,16 @@ font-family: 'Wellfleet', monospace;
         )}</p>`;
       }
 
-      // Function to proceed to the payment page
       function proceedToPayment() {
-        // Redirect to the Payment Page
         window.location.href = "payment.html";
       }
 
-      // Call the functions
       displayCartItems();
 
-      // Add event listener for the "Proceed to Payment" button
       const proceedButton = document.getElementById("proceed-to-payment");
       proceedButton.addEventListener("click", proceedToPayment);
     </script>
 
-    <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
