@@ -69,7 +69,7 @@
 	  "category": "Fantasy",
 	  "price": 15.99,
 	  "description": "High-fantasy novel series.",
-	  "cover_image": "/Assets/images/lord_of_the_rings.jpg"
+	  "cover_image": "Assets/images/lord_of_the_rings.jpg"
 	},
 	{
 	  "id": 9,
