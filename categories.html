@@ -73,7 +73,6 @@ font-family: 'Wellfleet', monospace;
 
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #383838d7;">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -106,31 +105,27 @@ font-family: 'Wellfleet', monospace;
             </div>
         </div>
     </nav>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
                     <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Fetch book details from the JSON file (Assuming books.json is in the same directory)
     fetch('books.json')
         .then(response => response.json())
         .then(data => {
-            // Populate categories and display all books
             populateCategories(data);
             displayBooks(data);
 
-            // Handle form submission
             const searchForm = document.getElementById('searchForm');
             searchForm.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault();
 
                 const searchTerm = document.getElementById('searchInput').value.toLowerCase();
 
-                // Filter books based on the search term
                 const filteredBooks = data.filter(book =>
                     book.title.toLowerCase().includes(searchTerm) ||
                     book.author.toLowerCase().includes(searchTerm)
                 );
 
-                // Display the filtered books
                 displayBooks(filteredBooks);
             });
         })
@@ -139,45 +134,35 @@ document.addEventListener('DOMContentLoaded', function () {
 categoryFilter.addEventListener('change', function () {
     const selectedCategory = categoryFilter.value.toLowerCase();
 
-    // Filter books based on the selected category
     const filteredBooks = data.filter(book =>
         book.category.toLowerCase() === selectedCategory
     );
 
-    // Display the filtered books
     displayBooks(filteredBooks);
 });
 
-// Function to populate categories in the filter dropdown
 function populateCategories(data) {
-    // Get the filter dropdown element by its ID
     const categoryFilter = document.getElementById('category');
 
-    // Extract unique categories from the book data
     const categories = [...new Set(data.map(book => book.category))];
 
     
-    // Iterate through the categories and create an option for each
-    categories.forEach(category => {
-        // Create an option element
+
+        categories.forEach(category => {
         const option = document.createElement('option');
 
-        // Set the value and text content of the option
         option.value = category;
         option.text = category;
 
-        // Append the option to the filter dropdown
         categoryFilter.appendChild(option);
     });
 }
 
-    // Function to display books
     function displayBooks(books) {
         const bookList = document.querySelector('.book-list');
-        bookList.innerHTML = ''; // Clear previous content
+        bookList.innerHTML = '';
     
         books.forEach(book => {
-            // Create elements for each book
             const card = document.createElement('div');
             card.classList.add('book-card');
     
@@ -193,13 +178,11 @@ function populateCategories(data) {
             const description = document.createElement('p');
             description.textContent = 'Description: ' + book.description;
     
-                    // Append elements to the card
                     card.appendChild(title);
                     card.appendChild(author);
                     card.appendChild(category);
                     card.appendChild(description);
             
-                    // Append the card to the book list
                     bookList.appendChild(card);
                 });
             }
@@ -209,31 +192,26 @@ function populateCategories(data) {
 
 
 
-    <!-- Add this inside the filters section -->
     <section class="filters">
         <label for="category">Filter by Category:</label>
         <select id="category">
-            <!-- Populate categories dynamically using JavaScript -->
         </select>
     </section>
 
     <section class="book-list">
-        <!-- Book details will be dynamically added here -->
     </section>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    let data; // Declare data variable outside the fetch block
+    let data; 
 
-    // Fetch book details from the JSON file (Assuming books.json is in the same directory)
     fetch('books.json')
         .then(response => response.json())
         .then(bookData => {
-            data = bookData; // Assign the fetched data to the outer variable
+            data = bookData; 
 
-            // Populate categories and display all books
             populateCategories(data);
             displayBooks(data);
         })
@@ -243,44 +221,34 @@ function populateCategories(data) {
     categoryFilter.addEventListener('change', function () {
         const selectedCategory = categoryFilter.value.toLowerCase();
 
-        // Filter books based on the selected category
         const filteredBooks = data.filter(book =>
             book.category.toLowerCase() === selectedCategory
         );
 
-        // Display the filtered books
         displayBooks(filteredBooks);
     });
 
-    // Function to populate categories in the filter dropdown
     function populateCategories(data) {
-        // Get the filter dropdown element by its ID
         const categoryFilter = document.getElementById('category');
 
-        // Extract unique categories from the book data
         const categories = [...new Set(data.map(book => book.category))];
 
-        // Iterate through the categories and create an option for each
         categories.forEach(category => {
-            // Create an option element
             const option = document.createElement('option');
 
-            // Set the value and text content of the option
             option.value = category;
             option.text = category;
 
-            // Append the option to the filter dropdown
             categoryFilter.appendChild(option);
         });
     }
 
-    // Function to display books
     function displayBooks(books) {
         const bookList = document.querySelector('.book-list');
-        bookList.innerHTML = ''; // Clear previous content
+        bookList.innerHTML = ''; 
 
         books.forEach(book => {
-            // Create elements for each book
+            
             const card = document.createElement('div');
             card.classList.add('book-card');
 
@@ -296,13 +264,11 @@ function populateCategories(data) {
             const description = document.createElement('p');
             description.textContent = 'Description: ' + book.description;
 
-            // Append elements to the card
             card.appendChild(title);
             card.appendChild(author);
             card.appendChild(category);
             card.appendChild(description);
 
-            // Append the card to the book list
             bookList.appendChild(card);
         });
     }
